@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content_frame, calFrag)
                 .commit();
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayout.setScrimColor(Color.TRANSPARENT);
         linearLayout = (LinearLayout) findViewById(R.id.left_drawer);
@@ -189,6 +190,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
 
         return calFrag;
     }
+
 
     @Override
     public void disableHomeButton() {
