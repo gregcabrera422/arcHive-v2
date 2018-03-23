@@ -39,9 +39,10 @@ dependencies {
         exclude group: 'org.apache.httpcomponents'
     }
     compile 'com.github.sundeepk:compact-calendar-view:2.0.2.2'
-    compile 'com.github.florent37:materialtextfield:1.0.7'
+    compile 'com.rengwuxian.materialedittext:library:2.1.4'
 
 }
+
 
 
 apply plugin: 'com.google.gms.google-services'

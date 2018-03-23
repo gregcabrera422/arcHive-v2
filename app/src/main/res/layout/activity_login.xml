@@ -11,69 +11,22 @@
         android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="57dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signInBtn">
+        app:layout_constraintStart_toEndOf="@+id/signInBtn"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword">
 
     </com.google.android.gms.common.SignInButton>
 
-    <com.github.florent37.materialtextfield.MaterialTextField
-        android:id="@+id/EmailTextField"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="42dp"
-        android:layout_marginStart="42dp"
-        app:layout_constraintBottom_toTopOf="@+id/PasswordTextField"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:mtf_image="@drawable/ic_email_black_24dp"
-        app:mtf_labelColor="#666">
-
-        <EditText
-            android:id="@+id/emailEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="iAcademy Email"
-            android:textColor="#333"
-            android:textSize="15sp" />
-
-    </com.github.florent37.materialtextfield.MaterialTextField>
-
-    <com.github.florent37.materialtextfield.MaterialTextField
-        android:id="@+id/PasswordTextField"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginStart="42dp"
-        app:layout_constraintBottom_toTopOf="@+id/signInBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailTextField"
-        app:mtf_image="@drawable/ic_lock_black_24dp"
-        app:mtf_labelColor="#666">
-
-        <EditText
-            android:id="@+id/pwEt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textColor="#333"
-            android:textSize="15sp" />
-
-    </com.github.florent37.materialtextfield.MaterialTextField>
-
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="160dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="22dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/EmailTextField"
+        android:layout_width="218dp"
+        android:layout_height="172dp"
+        android:layout_marginBottom="38dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/etEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -81,29 +34,78 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="222dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginStart="57dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_in_button"
         app:srcCompat="@drawable/iacademy_logo2" />
 
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/etEmail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="23dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginStart="57dp"
+        android:hint="iACADEMY Email"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/etPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:met_baseColor="@color/black"
+        app:met_floatingLabel="highlight"
+        app:met_iconLeft="@drawable/email_icon"
+        app:met_iconPadding="0dp"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_helperTextAlwaysShown="true"
+        app:met_helperTextColor="@color/error"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/etPassword"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="23dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginStart="57dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail"
+        app:met_baseColor="@color/black"
+        app:met_floatingLabel="highlight"
+        app:met_iconLeft="@drawable/password_icon"
+        app:met_iconPadding="0dp"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_helperTextAlwaysShown="true"
+        app:met_helperTextColor="@color/error"/>
+
     <Button
         android:id="@+id/signInBtn"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="193dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginStart="57dp"
         android:background="@color/colorPrimary"
         android:onClick="signIn1"
         android:text="Sign In"
         android:textColor="@color/sign_in_text"
-        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordTextField" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/sign_in_button"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

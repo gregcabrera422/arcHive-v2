@@ -1,14 +1,12 @@
 package com.untitledhorton.archive;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -22,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class LoginActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
@@ -29,15 +28,15 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1;
     public static final String TAG = "archive";
 
-    EditText emailEt;
-    EditText pwEt;
+    MaterialEditText emailEt;
+    MaterialEditText pwEt;
     Button signInBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        emailEt = findViewById(R.id.emailEt);
-        pwEt = findViewById(R.id.pwEt);
+        emailEt = findViewById(R.id.etEmail);
+        pwEt = findViewById(R.id.etPassword);
         signInBtn = findViewById(R.id.signInBtn);
 
         mAuth = FirebaseAuth.getInstance();
@@ -123,7 +122,8 @@ public class LoginActivity extends AppCompatActivity {
         if(emailEt.getText().toString().equals("user") && pwEt.getText().toString().equals("student")){
             startActivity(new Intent(this, MainActivity.class));
         }else{
-            signInBtn.setBackgroundColor(getResources().getColor(R.color.error));
+            emailEt.setHelperText("Wrong email");
+            pwEt.setHelperText("Wrong password");
         }
 
     }

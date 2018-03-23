@@ -7,5 +7,6 @@
     <color name="hamburger_color">#ffffff</color>
     <color name="background">#ffffff</color>
     <color name="sign_in_text">#ffffff</color>
-    <color name="error">#ff6666</color>
+    <color name="error">#cc0000</color>
+    <color name="black">#000000</color>
 </resources>
