@@ -14,10 +14,10 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.LinearLayout;
 
-import com.untitledhorton.archive.Fragment.CalendarFragment;
 import com.untitledhorton.archive.Fragment.ClassFragment;
 import com.untitledhorton.archive.Fragment.ProfileFragment;
 import com.untitledhorton.archive.Fragment.TaskFragment;
+import com.untitledhorton.archive.Fragment.UnorganizedFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,16 +36,16 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
     private List<SlideMenuItem> list = new ArrayList<>();
     private ViewAnimator viewAnimator;
     private LinearLayout linearLayout;
-    private CalendarFragment calFrag;
+    private UnorganizedFragment unorganizedFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        calFrag = CalendarFragment.newInstance();
+        unorganizedFrag = UnorganizedFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, calFrag)
+                .replace(R.id.content_frame, unorganizedFrag)
                 .commit();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
 
         setActionBar();
         createMenuList();
-        viewAnimator = new ViewAnimator<>(this, list, calFrag, drawerLayout, this);
+        viewAnimator = new ViewAnimator<>(this, list, unorganizedFrag, drawerLayout, this);
     }
 
     private void createMenuList() {
@@ -168,16 +168,16 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
 
         switch (slideMenuItem.getName()){
             case "one":
-                CalendarFragment calFrag  = CalendarFragment.newInstance();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, calFrag ).commit();
+                UnorganizedFragment unorganizedFrag  = UnorganizedFragment.newInstance();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, unorganizedFrag).commit();
                 break;
             case "two":
                 TaskFragment taskFrag = TaskFragment.newInstance();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, taskFrag ).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, taskFrag).commit();
                 break;
             case "three":
                 ClassFragment classFrag = ClassFragment.newInstance();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, classFrag ).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, classFrag).commit();
                 break;
             case "four":
                 ProfileFragment profileFrag = ProfileFragment.newInstance();
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
 
         }
 
-        return calFrag;
+        return unorganizedFrag;
     }
 
 

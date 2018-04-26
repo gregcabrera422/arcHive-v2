@@ -36,9 +36,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        emailEt = findViewById(R.id.etEmail);
-        pwEt = findViewById(R.id.etPassword);
-        signInBtn = findViewById(R.id.signInBtn);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -117,17 +114,6 @@ public class LoginActivity extends AppCompatActivity {
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
-
-    }
-
-    public void signIn1(View v){
-
-        if(emailEt.getText().toString().equals("user") && pwEt.getText().toString().equals("student")){
-            startActivity(new Intent(this, MainActivity.class));
-        }else{
-            emailEt.setHelperText("Wrong email");
-            pwEt.setHelperText("Wrong password");
-        }
 
     }
 

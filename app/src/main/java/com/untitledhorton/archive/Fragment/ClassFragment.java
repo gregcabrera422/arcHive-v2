@@ -17,7 +17,7 @@ import yalantis.com.sidemenu.interfaces.ScreenShotable;
  * Created by Greg on 10/03/2018.
  */
 
-public class ClassFragment extends Fragment implements ScreenShotable {
+public class ClassFragment extends Fragment implements ScreenShotable{
 
     private View Fragmentone_view;
     private Bitmap bitmap;
@@ -30,6 +30,7 @@ public class ClassFragment extends Fragment implements ScreenShotable {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_class, container, false);
+
 
         return rootView;
     }
