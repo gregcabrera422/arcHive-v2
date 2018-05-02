@@ -8,17 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.untitledhorton.archive.Model.Reminder;
+import com.untitledhorton.archive.Model.Note;
 import com.untitledhorton.archive.R;
 
 import java.util.ArrayList;
 
 public class CustomReminderAdapter extends BaseAdapter {
     Context mContext;
-    ArrayList<Reminder> reminders;
+    ArrayList<Note> reminders;
     LayoutInflater inflater;
 
-    public CustomReminderAdapter(Context mContext, ArrayList<Reminder> reminders) {
+    public CustomReminderAdapter(Context mContext, ArrayList<Note> reminders) {
       this.mContext = mContext;
       this.reminders = reminders;
     }
@@ -40,7 +40,7 @@ public class CustomReminderAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //View v = View.inflate(mContext, R.layout.custom_reminder_row, null);
+        //View v = View.inflate(mContext, R.layout.custom_note_row, null);
 
         if(inflater==null)
         {
@@ -49,13 +49,13 @@ public class CustomReminderAdapter extends BaseAdapter {
 
         if(convertView==null)
         {
-            convertView = inflater.inflate(R.layout.custom_reminder_row,parent,false);
+            convertView = inflater.inflate(R.layout.custom_note_row,parent,false);
         }
 
         TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
         ImageView ivNotification = (ImageView) convertView.findViewById(R.id.ivNotification);
 
-        tvTitle.setText(reminders.get(position).getTitle());
+        tvTitle.setText(reminders.get(position).getNote());
         ivNotification.setImageResource(R.drawable.ic_notifications_black_24dp);
         notifyDataSetChanged();
         return convertView;

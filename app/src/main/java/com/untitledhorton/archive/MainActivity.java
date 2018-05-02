@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import com.untitledhorton.archive.Fragment.ClassFragment;
 import com.untitledhorton.archive.Fragment.ProfileFragment;
 import com.untitledhorton.archive.Fragment.TaskFragment;
-import com.untitledhorton.archive.Fragment.UnorganizedFragment;
+import com.untitledhorton.archive.Fragment.NotesFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,16 +36,16 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
     private List<SlideMenuItem> list = new ArrayList<>();
     private ViewAnimator viewAnimator;
     private LinearLayout linearLayout;
-    private UnorganizedFragment unorganizedFrag;
+    private NotesFragment notesFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        unorganizedFrag = UnorganizedFragment.newInstance();
+        notesFrag = NotesFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, unorganizedFrag)
+                .replace(R.id.content_frame, notesFrag)
                 .commit();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
 
         setActionBar();
         createMenuList();
-        viewAnimator = new ViewAnimator<>(this, list, unorganizedFrag, drawerLayout, this);
+        viewAnimator = new ViewAnimator<>(this, list, notesFrag, drawerLayout, this);
     }
 
     private void createMenuList() {
@@ -168,8 +168,8 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
 
         switch (slideMenuItem.getName()){
             case "one":
-                UnorganizedFragment unorganizedFrag  = UnorganizedFragment.newInstance();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, unorganizedFrag).commit();
+                NotesFragment notesFrag  = NotesFragment.newInstance();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, notesFrag).commit();
                 break;
             case "two":
                 TaskFragment taskFrag = TaskFragment.newInstance();
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
 
         }
 
-        return unorganizedFrag;
+        return notesFrag;
     }
 
 
