@@ -1,6 +1,5 @@
 package com.untitledhorton.archive.Fragment;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -9,59 +8,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.github.sundeepk.compactcalendarview.CompactCalendarView;
-import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.untitledhorton.archive.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
 import yalantis.com.sidemenu.interfaces.ScreenShotable;
 
 /**
- * Created by Greg on 09/03/2018.
+ * Created by Greg on 10/03/2018.
  */
 
-public class CalendarFragment extends Fragment implements ScreenShotable{
+public class CalendarFragment extends Fragment implements ScreenShotable {
 
     private View Fragmentone_view;
     private Bitmap bitmap;
 
-    private TextView lblMonth;
-    CompactCalendarView compactCalendar;
-    private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
-
     public static CalendarFragment newInstance() {
-        CalendarFragment calFrag = new CalendarFragment();
-        return calFrag;
+        CalendarFragment taskFrag = new CalendarFragment();
+        return taskFrag;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
-
-        compactCalendar = rootView.findViewById(R.id.compactcalendar_view);
-        lblMonth = rootView.findViewById(R.id.lblMonth);
-        Date currentDate = new Date();
-        lblMonth.setText(dateFormatMonth.format(currentDate));
-
-        compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
-            @Override
-            public void onDayClick(Date dateClicked) {
-
-                Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT);
-            }
-
-            @Override
-            public void onMonthScroll(Date firstDayOfNewMonth) {
-                lblMonth.setText(dateFormatMonth.format(firstDayOfNewMonth));
-            }
-        });
+        View rootView = inflater.inflate(R.layout.fragment_task, container, false);
 
         return rootView;
     }

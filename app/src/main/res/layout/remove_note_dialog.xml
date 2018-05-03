@@ -7,27 +7,13 @@
     tools:layout_editor_absoluteY="25dp">
 
     <Button
-        android:id="@+id/btnAddNote"
+        android:id="@+id/btnRemoveNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="13dp"
-        android:layout_marginTop="7dp"
-        android:background="@android:color/transparent"
-        android:text="Done"
-        app:layout_constraintEnd_toStartOf="@+id/btnCancel"
-        app:layout_constraintTop_toBottomOf="@+id/etNote" />
-
-    <EditText
-        android:id="@+id/etNote"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="88dp"
         android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Add A Note"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@android:color/transparent"
+        android:text="Remove"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,10 +21,11 @@
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:text="Cancel"
-        app:layout_constraintEnd_toEndOf="@+id/etNote"
-        app:layout_constraintTop_toBottomOf="@+id/etNote" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

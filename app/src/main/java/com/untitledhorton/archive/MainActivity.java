@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 
 import com.untitledhorton.archive.Fragment.ClassFragment;
 import com.untitledhorton.archive.Fragment.ProfileFragment;
-import com.untitledhorton.archive.Fragment.TaskFragment;
+import com.untitledhorton.archive.Fragment.CalendarFragment;
 import com.untitledhorton.archive.Fragment.NotesFragment;
 
 import java.util.ArrayList;
@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
     private void createMenuList() {
         SlideMenuItem menuItem = new SlideMenuItem("close", R.drawable.icn_close);
         list.add(menuItem);
-        SlideMenuItem menuItem1 = new SlideMenuItem("one", R.drawable.calendar_icon);
+        SlideMenuItem menuItem1 = new SlideMenuItem("one", R.drawable.notes_icon);
         list.add(menuItem1);
-        SlideMenuItem menuItem2 = new SlideMenuItem("two", R.drawable.task_icon);
+        SlideMenuItem menuItem2 = new SlideMenuItem("two", R.drawable.calendar_icon);
         list.add(menuItem2);
         SlideMenuItem menuItem3 = new SlideMenuItem("three", R.drawable.classroom_icon);
         list.add(menuItem3);
@@ -172,8 +172,8 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, notesFrag).commit();
                 break;
             case "two":
-                TaskFragment taskFrag = TaskFragment.newInstance();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, taskFrag).commit();
+                CalendarFragment calFrag = CalendarFragment.newInstance();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, calFrag).commit();
                 break;
             case "three":
                 ClassFragment classFrag = ClassFragment.newInstance();
