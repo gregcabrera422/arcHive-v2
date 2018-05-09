@@ -7,14 +7,14 @@ package com.untitledhorton.archive.Model;
 public class Note {
     private String id;
     private String note;
-    private int day;
-    private int month;
-    private int year;
+    private String day;
+    private String month;
+    private String year;
 
     public Note(){
     }
 
-    public Note(String id, String note, int day, int month, int year) {
+    public Note(String id, String note, String day, String month, String year) {
         this.id = id;
         this.note = note;
         this.day = day;
@@ -38,27 +38,27 @@ public class Note {
         this.note = note;
     }
 
-    public int getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(String day) {
         this.day = day;
     }
 
-    public int getMonth() {
+    public String getMonth() {
         return month;
     }
 
-    public void setMonth(int month) {
+    public void setMonth(String month) {
         this.month = month;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 

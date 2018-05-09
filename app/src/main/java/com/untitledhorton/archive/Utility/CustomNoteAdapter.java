@@ -18,9 +18,9 @@ public class CustomNoteAdapter extends BaseAdapter {
     ArrayList<Note> notes;
     LayoutInflater inflater;
 
-    public CustomNoteAdapter(Context mContext, ArrayList<Note> reminders) {
+    public CustomNoteAdapter(Context mContext, ArrayList<Note> notes) {
       this.mContext = mContext;
-      this.notes = reminders;
+      this.notes = notes;
     }
 
     @Override
@@ -40,7 +40,6 @@ public class CustomNoteAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //View v = View.inflate(mContext, R.layout.custom_note_row, null);
 
         if(inflater==null)
         {

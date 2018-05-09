@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.LinearLayout;
 
-import com.untitledhorton.archive.Fragment.ClassFragment;
+import com.untitledhorton.archive.Fragment.MonthLogFragment;
 import com.untitledhorton.archive.Fragment.ProfileFragment;
 import com.untitledhorton.archive.Fragment.CalendarFragment;
 import com.untitledhorton.archive.Fragment.NotesFragment;
@@ -176,8 +176,8 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, calFrag).commit();
                 break;
             case "three":
-                ClassFragment classFrag = ClassFragment.newInstance();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, classFrag).commit();
+                MonthLogFragment monthLogFragment = MonthLogFragment.newInstance();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, monthLogFragment).commit();
                 break;
             case "four":
                 ProfileFragment profileFrag = ProfileFragment.newInstance();

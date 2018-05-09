@@ -15,11 +15,11 @@ import android.view.animation.BounceInterpolator;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
-import com.melnykov.fab.FloatingActionButton;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
@@ -28,20 +28,21 @@ import com.untitledhorton.archive.R;
 import com.untitledhorton.archive.Utility.CustomNoteAdapter;
 import com.untitledhorton.archive.Utility.FirebaseCommand;
 import com.untitledhorton.archive.Utility.FirebaseOperation;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import yalantis.com.sidemenu.interfaces.ScreenShotable;
 
 /**
- * Created by Greg on 09/03/2018.
+ * Created by Greg on 10/03/2018.
  */
 
-public class NotesFragment extends Fragment implements ScreenShotable, FirebaseCommand, View.OnClickListener{
+public class MonthLogFragment extends Fragment implements ScreenShotable, FirebaseCommand{
 
     private View Fragmentone_view;
     private Bitmap bitmap;
 
-    private FloatingActionButton fab;
     private ArrayList<Note> notes;
     private SwipeMenuListView lvNotes;
     private CustomNoteAdapter noteAdapter;
@@ -49,26 +50,23 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
     private EditText etNote;
     private String note, day, month, year;
 
-    public static NotesFragment newInstance() {
-        NotesFragment notesFrag = new NotesFragment();
-        return notesFrag;
+    public static MonthLogFragment newInstance() {
+        MonthLogFragment monthLogFragment = new MonthLogFragment();
+        return monthLogFragment;
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_notes, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_monthlog, container, false);
 
         lvNotes = rootView.findViewById(R.id.lvReminders);
         pb = rootView.findViewById(R.id.pb);
-        fab = rootView.findViewById(R.id.fab);
         notes = new ArrayList<Note>();
-        fab.attachToListView(lvNotes);
         noteAdapter = new CustomNoteAdapter(getActivity(), notes);
 
-        FirebaseOperation.retrieveNotes(pb, notes, noteAdapter);
+        FirebaseOperation.retrieveMonth(pb, notes, noteAdapter);
 
         lvNotes.setAdapter(noteAdapter);
-        fab.setOnClickListener(this);
         swipeMenuCreator(lvNotes);
 
         return rootView;
@@ -137,7 +135,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                                 }
                                 FirebaseOperation.moveNote(moveKey, day, month, year);
                             }
-                            }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+                        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
                         datePickerDialog.show();
 
                         break;
@@ -212,7 +210,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                         Fragmentone_view.getHeight(), Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(bitmap);
                 Fragmentone_view.draw(canvas);
-                NotesFragment.this.bitmap = bitmap;
+                MonthLogFragment.this.bitmap = bitmap;
             }
         };
 
@@ -236,37 +234,4 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch(view.getId()){
-            case R.id.fab:
-                DialogPlus addDialog = DialogPlus.newDialog(getActivity())
-                        .setHeader(R.layout.add_note_header)
-                        .setExpanded(true, 500)
-                        .setContentHolder(new ViewHolder(R.layout.add_note_dialog))
-                        .setOnClickListener(new OnClickListener() {
-                            @Override
-                            public void onClick(DialogPlus dialog, View view) {
-                                etNote = dialog.getHolderView().findViewById(R.id.etNote);
-                                switch(view.getId()){
-                                    case R.id.btnAddNote:
-                                        note = etNote.getText().toString();
-                                        FirebaseOperation.insertNote(note);
-                                        notes.clear();
-                                        noteAdapter.notifyDataSetChanged();
-                                        dialog.dismiss();
-                                        break;
-                                    case R.id.btnCancel:
-                                        dialog.dismiss();
-                                        break;
-                                }
-
-                            }
-                        })
-                        .setExpanded(true)
-                        .create();
-                addDialog.show();
-                break;
-        }
-    }
 }
