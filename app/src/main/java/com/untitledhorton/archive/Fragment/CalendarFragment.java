@@ -18,6 +18,7 @@ import com.untitledhorton.archive.R;
 import com.untitledhorton.archive.Utility.FirebaseOperation;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -34,8 +35,9 @@ public class CalendarFragment extends Fragment implements ScreenShotable {
     private Bitmap bitmap;
 
     private CompactCalendarView compactCalendar;
-    private TextView lblMonth;
-    private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
+    private TextView lblMonth, lblDate, tvEmpty;
+    private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
+    private SimpleDateFormat dateFormatMonthDay = new SimpleDateFormat("MMMM dd", Locale.getDefault());
     private ArrayList<String> eventNote;
     private ListView lvEvents;
 
@@ -49,25 +51,31 @@ public class CalendarFragment extends Fragment implements ScreenShotable {
         View rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
         compactCalendar = rootView.findViewById(R.id.compactcalendar_view);
         lblMonth = rootView.findViewById(R.id.lblMonth);
+        lblDate = rootView.findViewById(R.id.lblDate);
         lvEvents = rootView.findViewById(R.id.lvEvents);
+        tvEmpty = rootView.findViewById(R.id.tvEmpty);
 
+        lblDate.setText("Notes for " + dateFormatMonthDay.format(Calendar.getInstance().getTime()));
         Date currentDate = new Date();
         lblMonth.setText(dateFormatMonth.format(currentDate));
         FirebaseOperation.retrieveNoteDates(compactCalendar);
         eventNote = new ArrayList<String>();
+
+
 
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
                 Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT);
                 eventNote.clear();
-
+                lblDate.setText("Notes for " + dateFormatMonthDay.format(dateClicked));
                 List<Event> events = compactCalendar.getEvents(dateClicked);
                 for(int ctr = 0; ctr<events.size(); ctr++){
                     eventNote.add(events.get(ctr).getData().toString());
                 }
 
                 ArrayAdapter<String> eventAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, eventNote);
+                lvEvents.setEmptyView(tvEmpty);
                 lvEvents.setAdapter(eventAdapter);
             }
 

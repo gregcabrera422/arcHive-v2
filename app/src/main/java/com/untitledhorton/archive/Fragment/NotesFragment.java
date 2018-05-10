@@ -15,12 +15,15 @@ import android.view.animation.BounceInterpolator;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.melnykov.fab.FloatingActionButton;
 import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.OnCancelListener;
 import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.untitledhorton.archive.Model.Note;
@@ -48,6 +51,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
     private ProgressBar pb;
     private EditText etNote;
     private String note, day, month, year;
+    private TextView tvEmpty;
 
     public static NotesFragment newInstance() {
         NotesFragment notesFrag = new NotesFragment();
@@ -61,16 +65,19 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
         lvNotes = rootView.findViewById(R.id.lvReminders);
         pb = rootView.findViewById(R.id.pb);
         fab = rootView.findViewById(R.id.fab);
+        tvEmpty = rootView.findViewById(R.id.tvEmpty);
         notes = new ArrayList<Note>();
         fab.attachToListView(lvNotes);
-        noteAdapter = new CustomNoteAdapter(getActivity(), notes);
 
-        FirebaseOperation.retrieveNotes(pb, notes, noteAdapter);
+        noteAdapter = new CustomNoteAdapter(getActivity(), notes);
+        lvNotes.setEmptyView(tvEmpty);
+
+        FirebaseOperation.retrieveNotes(pb, notes, noteAdapter, tvEmpty);
 
         lvNotes.setAdapter(noteAdapter);
+
         fab.setOnClickListener(this);
         swipeMenuCreator(lvNotes);
-
         return rootView;
     }
 
@@ -143,7 +150,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                         break;
                     case 1:
                         final String editKey = item.getId();
-
+                        final String editNote = item.getNote();
                         DialogPlus editDialog = DialogPlus.newDialog(getActivity())
                                 .setHeader(R.layout.edit_note_header)
                                 .setExpanded(true, 500)
@@ -152,6 +159,8 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                                     @Override
                                     public void onClick(DialogPlus dialog, View view) {
                                         etNote = dialog.getHolderView().findViewById(R.id.etNote);
+
+                                        etNote.setText("xzcxzcx");
                                         switch(view.getId()){
                                             case R.id.btnAddNote:
                                                 note = etNote.getText().toString();
@@ -164,6 +173,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                                                 dialog.dismiss();
                                                 break;
                                         }
+
                                     }
                                 })
                                 .create();
@@ -235,6 +245,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
 
     @Override
     public void onClick(View view) {

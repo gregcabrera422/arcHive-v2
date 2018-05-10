@@ -3,8 +3,11 @@ package com.untitledhorton.archive.Utility;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,7 +31,8 @@ import java.util.HashMap;
 
 public class FirebaseOperation implements FirebaseCommand {
 
-    public static void retrieveNotes(final ProgressBar pb, final ArrayList<Note> notes, final CustomNoteAdapter noteAdapter){
+    public static void retrieveNotes(final ProgressBar pb, final ArrayList<Note> notes, final CustomNoteAdapter noteAdapter,
+                                     final TextView tvEmpty){
         NOTES_TABLE.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -45,12 +49,15 @@ public class FirebaseOperation implements FirebaseCommand {
                     noteAdapter.notifyDataSetChanged();
                 }
                 pb.setVisibility(View.INVISIBLE);
+                tvEmpty.setText("Add A Note");
             }
             @Override
             public void onCancelled(DatabaseError firebaseError) {
 
             }
         });
+
+
     }
 
     public static void insertNote(String note){
@@ -128,7 +135,8 @@ public class FirebaseOperation implements FirebaseCommand {
         });
     }
 
-    public static void retrieveMonth(final ProgressBar pb, final ArrayList<Note> notes, final CustomNoteAdapter noteAdapter){
+    public static void retrieveMonth(final ProgressBar pb, final ArrayList<Note> notes, final CustomNoteAdapter noteAdapter,
+                                     final TextView tvEmpty){
         Calendar cal = Calendar.getInstance();
         final String month;
 
@@ -156,6 +164,7 @@ public class FirebaseOperation implements FirebaseCommand {
                     noteAdapter.notifyDataSetChanged();
                 }
                 pb.setVisibility(View.INVISIBLE);
+                tvEmpty.setText("You have no notes this month");
             }
             @Override
             public void onCancelled(DatabaseError firebaseError) {

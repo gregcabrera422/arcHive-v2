@@ -15,6 +15,7 @@ import android.view.animation.BounceInterpolator;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -29,8 +30,11 @@ import com.untitledhorton.archive.Utility.CustomNoteAdapter;
 import com.untitledhorton.archive.Utility.FirebaseCommand;
 import com.untitledhorton.archive.Utility.FirebaseOperation;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import yalantis.com.sidemenu.interfaces.ScreenShotable;
 
@@ -44,6 +48,7 @@ public class MonthLogFragment extends Fragment implements ScreenShotable, Fireba
     private Bitmap bitmap;
 
     private ArrayList<Note> notes;
+    private TextView tvEmpty;
     private SwipeMenuListView lvNotes;
     private CustomNoteAdapter noteAdapter;
     private ProgressBar pb;
@@ -63,9 +68,10 @@ public class MonthLogFragment extends Fragment implements ScreenShotable, Fireba
         pb = rootView.findViewById(R.id.pb);
         notes = new ArrayList<Note>();
         noteAdapter = new CustomNoteAdapter(getActivity(), notes);
+        tvEmpty = rootView.findViewById(R.id.tvEmpty);
 
-        FirebaseOperation.retrieveMonth(pb, notes, noteAdapter);
-
+        lvNotes.setEmptyView(tvEmpty);
+        FirebaseOperation.retrieveMonth(pb, notes, noteAdapter, tvEmpty);
         lvNotes.setAdapter(noteAdapter);
         swipeMenuCreator(lvNotes);
 

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/background"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <FrameLayout
         android:id="@+id/container"
@@ -16,13 +16,46 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tvEmpty"
+                android:layout_width="220dp"
+                android:layout_height="55dp"
+                android:layout_marginBottom="92dp"
+                android:gravity="center"
+                android:text="No Notes"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="CALENDAR"
+                android:textColor="#FFF"
+                android:background="@color/toolbar_color"
+                android:textSize="30dp"/>
+            <TextView
+                android:id="@+id/lblMonth"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="#014FB3"
+                android:textSize="20dp" />
+
             <com.github.sundeepk.compactcalendarview.CompactCalendarView
                 android:id="@+id/compactcalendar_view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="11dp"
-                android:layout_marginEnd="31dp"
-                android:layout_marginStart="31dp"
+                android:layout_width="350dp"
+                android:layout_height="220dp"
+                android:layout_marginBottom="9dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 app:compactCalendarBackgroundColor="#014FB3"
@@ -32,38 +65,28 @@
                 app:compactCalendarTargetHeight="250dp"
                 app:compactCalendarTextColor="#ffffff"
                 app:compactCalendarTextSize="12sp"
-                app:layout_constraintBottom_toTopOf="@+id/lvEvents"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblMonth" />
+                android:padding="20dp"
+                android:layout_gravity="center"/>
+
+
 
             <TextView
-                android:id="@+id/lblMonth"
+                android:id="@+id/lblDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="9dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
                 android:text="TextView"
                 android:textColor="#014FB3"
-                android:textSize="30dp"
-                app:layout_constraintBottom_toTopOf="@+id/compactcalendar_view"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="20dp"
+                tools:layout_editor_absoluteY="300dp" />
 
             <ListView
                 android:id="@+id/lvEvents"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/compactcalendar_view" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteY="358dp" />
 
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
     </FrameLayout>
 
 </io.codetail.widget.RevealFrameLayout>
