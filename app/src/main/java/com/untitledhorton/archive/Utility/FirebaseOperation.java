@@ -43,8 +43,11 @@ public class FirebaseOperation implements FirebaseCommand {
 
                     NOTES_TABLE.child(key.toString());
                     note = objSnapshot.getValue(Note.class);
-                    note.setId(key.toString());
-                    notes.add(note);
+
+                    if(note.getYear().equals("0")) {
+                        note.setId(key.toString());
+                        notes.add(note);
+                    }
 
                     noteAdapter.notifyDataSetChanged();
                 }
@@ -139,6 +142,7 @@ public class FirebaseOperation implements FirebaseCommand {
                                      final TextView tvEmpty){
         Calendar cal = Calendar.getInstance();
         final String month;
+        final String year = Integer.toString(cal.get(Calendar.YEAR));
 
         if(cal.get(Calendar.MONTH)+1<10){
             month = "0"+Integer.toString(cal.get(Calendar.MONTH)+1);
@@ -156,7 +160,7 @@ public class FirebaseOperation implements FirebaseCommand {
                     NOTES_TABLE.child(key.toString());
                     note = objSnapshot.getValue(Note.class);
 
-                    if(note.getMonth().equals(month)) {
+                    if(note.getMonth().equals(month)&&note.getYear().equals(year)) {
                         note.setId(key.toString());
                         notes.add(note);
                     }

@@ -62,7 +62,6 @@ public class CalendarFragment extends Fragment implements ScreenShotable {
         eventNote = new ArrayList<String>();
 
 
-
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {

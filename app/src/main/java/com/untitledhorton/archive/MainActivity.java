@@ -1,5 +1,6 @@
 package com.untitledhorton.archive;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -8,12 +9,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.LinearLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.OnClickListener;
+import com.orhanobut.dialogplus.ViewHolder;
 import com.untitledhorton.archive.Fragment.MonthLogFragment;
 import com.untitledhorton.archive.Fragment.ProfileFragment;
 import com.untitledhorton.archive.Fragment.CalendarFragment;
@@ -70,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
         list.add(menuItem1);
         SlideMenuItem menuItem2 = new SlideMenuItem("two", R.drawable.calendar_icon);
         list.add(menuItem2);
-        SlideMenuItem menuItem3 = new SlideMenuItem("three", R.drawable.classroom_icon);
+        SlideMenuItem menuItem3 = new SlideMenuItem("three", R.drawable.monthlog_icon);
         list.add(menuItem3);
         SlideMenuItem menuItem4 = new SlideMenuItem("four", R.drawable.profile_icon);
         list.add(menuItem4);
@@ -139,7 +145,30 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
             return true;
         }
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.menu_item_add:
+                DialogPlus removeDialog = DialogPlus.newDialog(this)
+                        .setHeader(R.layout.confirmation_header)
+                        .setExpanded(true, 400)
+                        .setContentHolder(new ViewHolder(R.layout.confirmation_dialog))
+                        .setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(DialogPlus dialog, View view) {
+                                switch(view.getId()){
+                                    case R.id.btnYes:
+                                        FirebaseAuth.getInstance().signOut();
+                                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                        startActivity(intent);
+                                        dialog.dismiss();
+                                        break;
+                                    case R.id.btnNo:
+                                        dialog.dismiss();
+                                        break;
+                                }
+                            }
+                        })
+                        .setGravity(Gravity.CENTER)
+                        .create();
+                removeDialog.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

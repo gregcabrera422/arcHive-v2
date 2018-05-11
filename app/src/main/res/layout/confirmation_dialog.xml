@@ -7,13 +7,13 @@
     tools:layout_editor_absoluteY="25dp">
 
     <Button
-        android:id="@+id/btnRemoveNote"
+        android:id="@+id/btnYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
-        android:text="Remove"
+        android:text="Yes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,10 +21,10 @@
         android:id="@+id/btnNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="86dp"
+        android:layout_marginEnd="96dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
-        android:text="Cancel"
+        android:text="No"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

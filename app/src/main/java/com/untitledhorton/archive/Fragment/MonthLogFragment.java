@@ -30,11 +30,8 @@ import com.untitledhorton.archive.Utility.CustomNoteAdapter;
 import com.untitledhorton.archive.Utility.FirebaseCommand;
 import com.untitledhorton.archive.Utility.FirebaseOperation;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 import yalantis.com.sidemenu.interfaces.ScreenShotable;
 
@@ -164,7 +161,7 @@ public class MonthLogFragment extends Fragment implements ScreenShotable, Fireba
                                                 noteAdapter.notifyDataSetChanged();
                                                 dialog.dismiss();
                                                 break;
-                                            case R.id.btnCancel:
+                                            case R.id.btnNo:
                                                 dialog.dismiss();
                                                 break;
                                         }
@@ -190,7 +187,7 @@ public class MonthLogFragment extends Fragment implements ScreenShotable, Fireba
                                                 noteAdapter.notifyDataSetChanged();
                                                 dialog.dismiss();
                                                 break;
-                                            case R.id.btnCancel:
+                                            case R.id.btnNo:
                                                 dialog.dismiss();
                                                 break;
                                         }

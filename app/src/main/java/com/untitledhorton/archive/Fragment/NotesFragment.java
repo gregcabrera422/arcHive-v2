@@ -23,7 +23,6 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.melnykov.fab.FloatingActionButton;
 import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.OnCancelListener;
 import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.untitledhorton.archive.Model.Note;
@@ -159,8 +158,6 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                                     @Override
                                     public void onClick(DialogPlus dialog, View view) {
                                         etNote = dialog.getHolderView().findViewById(R.id.etNote);
-
-                                        etNote.setText("xzcxzcx");
                                         switch(view.getId()){
                                             case R.id.btnAddNote:
                                                 note = etNote.getText().toString();
@@ -169,7 +166,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                                                 noteAdapter.notifyDataSetChanged();
                                                 dialog.dismiss();
                                                 break;
-                                            case R.id.btnCancel:
+                                            case R.id.btnNo:
                                                 dialog.dismiss();
                                                 break;
                                         }
@@ -196,7 +193,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                                                 noteAdapter.notifyDataSetChanged();
                                                 dialog.dismiss();
                                                 break;
-                                            case R.id.btnCancel:
+                                            case R.id.btnNo:
                                                 dialog.dismiss();
                                                 break;
                                         }
@@ -267,7 +264,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                                         noteAdapter.notifyDataSetChanged();
                                         dialog.dismiss();
                                         break;
-                                    case R.id.btnCancel:
+                                    case R.id.btnNo:
                                         dialog.dismiss();
                                         break;
                                 }
@@ -280,4 +277,5 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                 break;
         }
     }
+
 }
