@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
+import com.untitledhorton.archive.Fragment.ClassFragment;
 import com.untitledhorton.archive.Fragment.MonthLogFragment;
 import com.untitledhorton.archive.Fragment.ProfileFragment;
 import com.untitledhorton.archive.Fragment.CalendarFragment;
@@ -78,8 +79,10 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
         list.add(menuItem2);
         SlideMenuItem menuItem3 = new SlideMenuItem("three", R.drawable.monthlog_icon);
         list.add(menuItem3);
-        SlideMenuItem menuItem4 = new SlideMenuItem("four", R.drawable.profile_icon);
+        SlideMenuItem menuItem4 = new SlideMenuItem("four", R.drawable.classroom_icon);
         list.add(menuItem4);
+        SlideMenuItem menuItem5 = new SlideMenuItem("five", R.drawable.profile_icon);
+        list.add(menuItem5);
     }
 
     private void setActionBar() {
@@ -209,6 +212,10 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, monthLogFragment).commit();
                 break;
             case "four":
+                ClassFragment classFrag = ClassFragment.newInstance();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, classFrag).commit();
+                break;
+            case "five":
                 ProfileFragment profileFrag = ProfileFragment.newInstance();
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, profileFrag).commit();
                 break;
