@@ -6,7 +6,9 @@ package com.untitledhorton.archive.Model;
 
 public class Note {
     private String id;
+    private String title;
     private String note;
+    private String priority;
     private String day;
     private String month;
     private String year;
@@ -14,9 +16,11 @@ public class Note {
     public Note(){
     }
 
-    public Note(String id, String note, String day, String month, String year) {
+    public Note(String id, String title, String note, String priority, String day, String month, String year) {
         this.id = id;
+        this.title = title;
         this.note = note;
+        this.priority = priority;
         this.day = day;
         this.month = month;
         this.year = year;
@@ -30,12 +34,28 @@ public class Note {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getNote() {
         return note;
     }
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
     public String getDay() {

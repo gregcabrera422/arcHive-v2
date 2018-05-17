@@ -1,12 +1,16 @@
 package com.untitledhorton.archive.Fragment;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +29,9 @@ import com.melnykov.fab.FloatingActionButton;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
+import com.untitledhorton.archive.AddActivity;
+import com.untitledhorton.archive.CourseDetailActivity;
+import com.untitledhorton.archive.EditActivity;
 import com.untitledhorton.archive.Model.Note;
 import com.untitledhorton.archive.R;
 import com.untitledhorton.archive.Utility.CustomNoteAdapter;
@@ -77,6 +84,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
 
         fab.setOnClickListener(this);
         swipeMenuCreator(lvNotes);
+
         return rootView;
     }
 
@@ -149,32 +157,14 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
                         break;
                     case 1:
                         final String editKey = item.getId();
+                        final String editTitle = item.getTitle();
                         final String editNote = item.getNote();
-                        DialogPlus editDialog = DialogPlus.newDialog(getActivity())
-                                .setHeader(R.layout.edit_note_header)
-                                .setExpanded(true, 500)
-                                .setContentHolder(new ViewHolder(R.layout.add_note_dialog))
-                                .setOnClickListener(new OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogPlus dialog, View view) {
-                                        etNote = dialog.getHolderView().findViewById(R.id.etNote);
-                                        switch(view.getId()){
-                                            case R.id.btnAddNote:
-                                                note = etNote.getText().toString();
-                                                FirebaseOperation.editNote(note, editKey);
-                                                notes.clear();
-                                                noteAdapter.notifyDataSetChanged();
-                                                dialog.dismiss();
-                                                break;
-                                            case R.id.btnNo:
-                                                dialog.dismiss();
-                                                break;
-                                        }
 
-                                    }
-                                })
-                                .create();
-                        editDialog.show();
+                        Intent intent = new Intent(getActivity(), EditActivity.class);
+                        intent.putExtra("editKey", editKey);
+                        intent.putExtra("editTitle", editTitle);
+                        intent.putExtra("editNote", editNote);
+                        getActivity().startActivity(intent);
                         break;
                     case 2:
                         final String removeKey = item.getId();
@@ -248,32 +238,8 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.fab:
-                DialogPlus addDialog = DialogPlus.newDialog(getActivity())
-                        .setHeader(R.layout.add_note_header)
-                        .setExpanded(true, 500)
-                        .setContentHolder(new ViewHolder(R.layout.add_note_dialog))
-                        .setOnClickListener(new OnClickListener() {
-                            @Override
-                            public void onClick(DialogPlus dialog, View view) {
-                                etNote = dialog.getHolderView().findViewById(R.id.etNote);
-                                switch(view.getId()){
-                                    case R.id.btnAddNote:
-                                        note = etNote.getText().toString();
-                                        FirebaseOperation.insertNote(note);
-                                        notes.clear();
-                                        noteAdapter.notifyDataSetChanged();
-                                        dialog.dismiss();
-                                        break;
-                                    case R.id.btnNo:
-                                        dialog.dismiss();
-                                        break;
-                                }
-
-                            }
-                        })
-                        .setExpanded(true)
-                        .create();
-                addDialog.show();
+                Intent intent = new Intent(getActivity(), AddActivity.class);
+                getActivity().startActivity(intent);
                 break;
         }
     }

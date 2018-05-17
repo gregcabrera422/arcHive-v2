@@ -61,7 +61,6 @@ public class CalendarFragment extends Fragment implements ScreenShotable {
         FirebaseOperation.retrieveNoteDates(compactCalendar);
         eventNote = new ArrayList<String>();
 
-
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {

@@ -1,6 +1,7 @@
 package com.untitledhorton.archive.Fragment;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -24,6 +25,7 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
+import com.untitledhorton.archive.EditActivity;
 import com.untitledhorton.archive.Model.Note;
 import com.untitledhorton.archive.R;
 import com.untitledhorton.archive.Utility.CustomNoteAdapter;
@@ -144,31 +146,14 @@ public class MonthLogFragment extends Fragment implements ScreenShotable, Fireba
                         break;
                     case 1:
                         final String editKey = item.getId();
+                        final String editTitle = item.getTitle();
+                        final String editNote = item.getNote();
 
-                        DialogPlus editDialog = DialogPlus.newDialog(getActivity())
-                                .setHeader(R.layout.edit_note_header)
-                                .setExpanded(true, 500)
-                                .setContentHolder(new ViewHolder(R.layout.add_note_dialog))
-                                .setOnClickListener(new OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogPlus dialog, View view) {
-                                        etNote = dialog.getHolderView().findViewById(R.id.etNote);
-                                        switch(view.getId()){
-                                            case R.id.btnAddNote:
-                                                note = etNote.getText().toString();
-                                                FirebaseOperation.editNote(note, editKey);
-                                                notes.clear();
-                                                noteAdapter.notifyDataSetChanged();
-                                                dialog.dismiss();
-                                                break;
-                                            case R.id.btnNo:
-                                                dialog.dismiss();
-                                                break;
-                                        }
-                                    }
-                                })
-                                .create();
-                        editDialog.show();
+                        Intent intent = new Intent(getActivity(), EditActivity.class);
+                        intent.putExtra("editKey", editKey);
+                        intent.putExtra("editTitle", editTitle);
+                        intent.putExtra("editNote", editNote);
+                        getActivity().startActivity(intent);
                         break;
                     case 2:
                         final String removeKey = item.getId();

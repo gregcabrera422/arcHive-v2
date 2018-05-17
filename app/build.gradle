@@ -48,7 +48,10 @@ dependencies {
         exclude group: 'org.apache.httpcomponents'
     }
     compile 'me.grantland:autofittextview:0.2.+'
+    compile 'com.android.support:design:26.1.0'
 }
+
+
 
 
 

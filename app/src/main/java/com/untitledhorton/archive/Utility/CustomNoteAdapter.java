@@ -51,9 +51,25 @@ public class CustomNoteAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.custom_note_row,parent,false);
         }
 
-        TextView tvNote = (TextView) convertView.findViewById(R.id.tvNote);
+        TextView tvTitle = convertView.findViewById(R.id.tvTitle);
+        ImageView ivPriority = convertView.findViewById(R.id.ivPriority);
+        TextView tvPriority = convertView.findViewById(R.id.tvPriority);
 
-        tvNote.setText(notes.get(position).getNote());
+        tvTitle.setText(notes.get(position).getTitle());
+        switch(notes.get(position).getPriority()){
+            case "High":
+                ivPriority.setImageResource(R.drawable.red_circle);
+                tvPriority.setText("High Priority");
+                break;
+            case "Medium":
+                ivPriority.setImageResource(R.drawable.orange_circle);
+                tvPriority.setText("Medium Priority");
+                break;
+            case "Low":
+                ivPriority.setImageResource(R.drawable.yellow_circle);
+                tvPriority.setText("Low Priority");
+                break;
+        }
         notifyDataSetChanged();
         return convertView;
     }

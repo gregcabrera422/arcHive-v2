@@ -63,9 +63,12 @@ public class FirebaseOperation implements FirebaseCommand {
 
     }
 
-    public static void insertNote(String note){
+    public static void insertNote(String title, String note, String priority){
         HashMap<String, Object> result = new HashMap<>();
+
+        result.put("title", title);
         result.put("note", note);
+        result.put("priority", priority);
         result.put("day", "0");
         result.put("month", "0");
         result.put("year", "0");
@@ -74,9 +77,7 @@ public class FirebaseOperation implements FirebaseCommand {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-
                 } else {
-//                    Toast.makeText(getActivity(), "Report failed to be sent", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -95,9 +96,11 @@ public class FirebaseOperation implements FirebaseCommand {
         NOTES_TABLE.child(item).updateChildren(date);
     }
 
-    public static void editNote(String note, String item){
+    public static void editNote(String title, String note, String priority, String item){
         HashMap<String, Object> updatedNote = new HashMap<>();
+        updatedNote.put("title", title);
         updatedNote.put("note", note);
+        updatedNote.put("priority", priority);
 
         NOTES_TABLE.child(item).updateChildren(updatedNote);
     }
@@ -123,7 +126,18 @@ public class FirebaseOperation implements FirebaseCommand {
                     {
                         Date date = simpleDateFormat.parse(eventDate);
 
-                        compactCalendar.addEvent(new Event(Color.GREEN, date.getTime(), note.getNote()));
+                        switch(note.getPriority()){
+                            case "High":
+                                compactCalendar.addEvent(new Event(Color.RED, date.getTime(), note.getNote()));
+                                break;
+                            case "Medium":
+                                compactCalendar.addEvent(new Event(Color.rgb(255,165,0), date.getTime(), note.getNote()));
+                                break;
+                            case "Low":
+                                compactCalendar.addEvent(new Event(Color.YELLOW, date.getTime(), note.getNote()));
+                                break;
+                        }
+
                     }
                     catch (ParseException e)
                     {
@@ -168,7 +182,7 @@ public class FirebaseOperation implements FirebaseCommand {
                     noteAdapter.notifyDataSetChanged();
                 }
                 pb.setVisibility(View.INVISIBLE);
-                tvEmpty.setText("You have no notes this month");
+                tvEmpty.setText("You Have No Notes This Month");
             }
             @Override
             public void onCancelled(DatabaseError firebaseError) {
