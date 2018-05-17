@@ -33,6 +33,7 @@ public class EditActivity extends AppCompatActivity {
 
         etTitle.setText(editTitle);
         etNote.setText(editNote);
+        priority = "High";
     }
 
     public void checkButton(View v){

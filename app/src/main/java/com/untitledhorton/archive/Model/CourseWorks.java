@@ -4,26 +4,37 @@ package com.untitledhorton.archive.Model;
  * Created by Greg on 16/05/2018.
  */
 
-public class CourseAnnouncement {
+public class CourseWorks {
 
-    private String AnnouncementText;
+    private String title;
+    private String courseText;
     private String date;
     private String teacherName;
     private String photoUrl;
 
-    public CourseAnnouncement(String AnnouncementText, String date, String teacherName, String photoUrl) {
-        this.AnnouncementText = AnnouncementText;
+
+    public CourseWorks(String title, String courseText, String date, String teacherName, String photoUrl) {
+        this.title = title;
+        this.courseText = courseText;
         this.date = date;
         this.teacherName = teacherName;
         this.photoUrl = photoUrl;
     }
 
-    public String getAnnouncementText() {
-        return AnnouncementText;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAnnouncementText(String announcementText) {
-        AnnouncementText = announcementText;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getCourseText() {
+        return courseText;
+    }
+
+    public void setCourseText(String courseText) {
+        courseText = courseText;
     }
 
     public String getDate() {

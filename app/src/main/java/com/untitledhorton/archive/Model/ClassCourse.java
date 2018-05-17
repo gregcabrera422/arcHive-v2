@@ -9,11 +9,13 @@ public class ClassCourse {
     private String courseId;
     private String courseName;
     private String teacherName;
+    private String photoUrl;
 
-    public ClassCourse(String courseId, String courseName, String teacherName) {
+    public ClassCourse(String courseId, String courseName, String teacherName, String photoUrl) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.teacherName = teacherName;
+        this.photoUrl = photoUrl;
     }
 
     public String getCourseId() {
@@ -38,5 +40,13 @@ public class ClassCourse {
 
     public void setTeacherName(String teacherName) {
         this.teacherName = teacherName;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

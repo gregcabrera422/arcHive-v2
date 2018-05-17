@@ -10,22 +10,24 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.untitledhorton.archive.Model.CourseAnnouncement;
+import com.untitledhorton.archive.Model.CourseWorks;
 import com.untitledhorton.archive.R;
+
 import java.util.List;
 
-public class AnnouncementRecyclerAdapter extends RecyclerView.Adapter<AnnouncementRecyclerAdapter.CVHolder>{
+public class CourseWorkRecyclerAdapter extends RecyclerView.Adapter<CourseWorkRecyclerAdapter.CVHolder>{
 
-    List<CourseAnnouncement> courseAnnouncements;
+    List<CourseWorks> courseWorks;
     Context context;
 
-    public AnnouncementRecyclerAdapter(List<CourseAnnouncement> courseAnnouncements, Context context){
-        this.courseAnnouncements = courseAnnouncements;
+    public CourseWorkRecyclerAdapter(List<CourseWorks> courseWorks, Context context){
+        this.courseWorks = courseWorks;
         this.context = context;
     }
 
     @Override
     public CVHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_details_card, null);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_work_card, null);
         CVHolder cvh = new CVHolder(v);
 
         return cvh;
@@ -33,25 +35,27 @@ public class AnnouncementRecyclerAdapter extends RecyclerView.Adapter<Announceme
 
     @Override
     public void onBindViewHolder(CVHolder customViewHolder, int i) {
-        CourseAnnouncement courseAnnouncement = courseAnnouncements.get(i);
+        CourseWorks courseWork = courseWorks.get(i);
 
-        customViewHolder.tvText.setText(courseAnnouncement.getAnnouncementText());
-        customViewHolder.tvDate.setText(courseAnnouncement.getDate());
-        customViewHolder.tvTeacherName.setText(courseAnnouncement.getTeacherName());
-        if(courseAnnouncement.getPhotoUrl().startsWith("http")){
-            Picasso.get().load(courseAnnouncement.getPhotoUrl()).into(customViewHolder.ivProfile);
+        customViewHolder.tvTitle.setText(courseWork.getTitle());
+        customViewHolder.tvText.setText(courseWork.getCourseText());
+        customViewHolder.tvDate.setText(courseWork.getDate());
+        customViewHolder.tvTeacherName.setText(courseWork.getTeacherName());
+        if(courseWork.getPhotoUrl().startsWith("http")){
+            Picasso.get().load(courseWork.getPhotoUrl()).into(customViewHolder.ivProfile);
         }else{
-            Picasso.get().load("http://"+courseAnnouncement.getPhotoUrl()).into(customViewHolder.ivProfile);
+            Picasso.get().load("http://"+courseWork.getPhotoUrl()).into(customViewHolder.ivProfile);
         }
     }
 
     @Override
     public int getItemCount() {
-        return (null != courseAnnouncements ? courseAnnouncements.size() : 0);
+        return (null != courseWorks ? courseWorks.size() : 0);
 
     }
 
     public class CVHolder extends RecyclerView.ViewHolder {
+        protected TextView tvTitle;
         protected TextView tvText;
         protected TextView tvDate;
         protected ImageView ivProfile;
@@ -60,6 +64,7 @@ public class AnnouncementRecyclerAdapter extends RecyclerView.Adapter<Announceme
 
         public CVHolder(View view) {
             super(view);
+            this.tvTitle = view.findViewById(R.id.tvTitle);
             this.tvText = view.findViewById(R.id.tvText);
             this.tvDate = view.findViewById(R.id.tvDate);
             this.ivProfile = view.findViewById(R.id.ivProfile);

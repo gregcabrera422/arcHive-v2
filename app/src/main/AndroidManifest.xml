@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SplashActivity" />
-        <activity android:name=".CourseDetailActivity" />
+        <activity android:name=".AnnouncementActivity" />
+        <activity android:name=".CourseWorkActivity" />
         <activity android:name=".EditActivity" />
         <activity android:name=".AddActivity"></activity>
     </application>
