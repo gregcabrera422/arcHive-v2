@@ -153,16 +153,9 @@ public class FirebaseOperation implements FirebaseCommand {
     }
 
     public static void retrieveMonth(final ProgressBar pb, final ArrayList<Note> notes, final CustomNoteAdapter noteAdapter,
-                                     final TextView tvEmpty){
+                                     final TextView tvEmpty, final String month){
         Calendar cal = Calendar.getInstance();
-        final String month;
         final String year = Integer.toString(cal.get(Calendar.YEAR));
-
-        if(cal.get(Calendar.MONTH)+1<10){
-            month = "0"+Integer.toString(cal.get(Calendar.MONTH)+1);
-        }else{
-            month = Integer.toString(cal.get(Calendar.MONTH)+1);
-        }
 
         NOTES_TABLE.addValueEventListener(new ValueEventListener() {
             @Override

@@ -2,13 +2,19 @@ package com.untitledhorton.archive.Fragment;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 import com.untitledhorton.archive.R;
 
 import yalantis.com.sidemenu.interfaces.ScreenShotable;
@@ -21,6 +27,10 @@ public class ProfileFragment extends Fragment implements ScreenShotable {
 
     private View Fragmentone_view;
     private Bitmap bitmap;
+    private TextView tvName, tvNumber;
+    private ImageView ivProfile;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     public static ProfileFragment newInstance() {
         ProfileFragment profileFrag = new ProfileFragment();
@@ -31,6 +41,17 @@ public class ProfileFragment extends Fragment implements ScreenShotable {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        ivProfile = rootView.findViewById(R.id.ivProfile);
+        tvName = rootView.findViewById(R.id.tvName);
+        tvNumber = rootView.findViewById(R.id.tvNumber);
+
+        String name = user.getDisplayName();
+        String email = user.getEmail();
+        Uri photoUrl = user.getPhotoUrl();
+
+        Picasso.get().load(photoUrl).into(ivProfile);
+        tvName.setText(name);
+        tvNumber.setText(email);
         return rootView;
     }
 

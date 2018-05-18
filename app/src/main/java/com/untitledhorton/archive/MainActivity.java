@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
             case R.id.menu_item_add:
                 DialogPlus removeDialog = DialogPlus.newDialog(this)
                         .setHeader(R.layout.confirmation_header)
-                        .setExpanded(true, 400)
+                        .setExpanded(true, 350)
                         .setContentHolder(new ViewHolder(R.layout.confirmation_dialog))
                         .setOnClickListener(new OnClickListener() {
                             @Override

@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
                 android:layout_margin="16dp"
-                android:src="@drawable/add_notes"
+                android:src="@drawable/ic_add_white_24dp"
                 fab:fab_colorNormal="@color/toolbar_color" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 android:text="Notes"
                 android:textColor="#ffffff"
                 android:textSize="30sp"
-                android:background="@color/toolbar_color"/>
+                android:background="@color/semi_toolbar_color"/>
             <com.baoyz.swipemenulistview.SwipeMenuListView
                 android:id="@+id/lvReminders"
                 android:layout_width="match_parent"

@@ -13,15 +13,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
+import com.google.api.client.util.DateTime;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
@@ -32,6 +37,7 @@ import com.untitledhorton.archive.Utility.CustomNoteAdapter;
 import com.untitledhorton.archive.Utility.FirebaseCommand;
 import com.untitledhorton.archive.Utility.FirebaseOperation;
 
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -48,11 +54,12 @@ public class MonthLogFragment extends Fragment implements ScreenShotable, Fireba
 
     private ArrayList<Note> notes;
     private TextView tvEmpty;
+    private Spinner spinner;
     private SwipeMenuListView lvNotes;
     private CustomNoteAdapter noteAdapter;
     private ProgressBar pb;
     private EditText etNote;
-    private String note, day, month, year;
+    private String note, day, month, year, selectedMonth;
 
     public static MonthLogFragment newInstance() {
         MonthLogFragment monthLogFragment = new MonthLogFragment();
@@ -68,12 +75,73 @@ public class MonthLogFragment extends Fragment implements ScreenShotable, Fireba
         notes = new ArrayList<Note>();
         noteAdapter = new CustomNoteAdapter(getActivity(), notes);
         tvEmpty = rootView.findViewById(R.id.tvEmpty);
-
+        spinner = rootView.findViewById(R.id.spinner);
         lvNotes.setEmptyView(tvEmpty);
-        FirebaseOperation.retrieveMonth(pb, notes, noteAdapter, tvEmpty);
+
         lvNotes.setAdapter(noteAdapter);
         swipeMenuCreator(lvNotes);
 
+        ArrayAdapter<String> monthAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.months));
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(monthAdapter);
+
+        Calendar cal = Calendar.getInstance();
+
+        selectedMonth = new DateFormatSymbols().getMonths()[cal.get(Calendar.MONTH)];
+        int spinnerPosition = monthAdapter.getPosition(selectedMonth);
+        spinner.setSelection(spinnerPosition);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println("month selected: " + adapterView.getSelectedItem().toString());
+                switch(adapterView.getSelectedItem().toString()){
+                    case "January":
+                        selectedMonth = "01";
+                        break;
+                    case "February":
+                        selectedMonth = "02";
+                        break;
+                    case "March":
+                        selectedMonth = "03";
+                        break;
+                    case "April":
+                        selectedMonth = "04";
+                        break;
+                    case "May":
+                        selectedMonth = "05";
+                        break;
+                    case "June":
+                        selectedMonth = "06";
+                        break;
+                    case "July":
+                        selectedMonth = "07";
+                        break;
+                    case "August":
+                        selectedMonth = "08";
+                        break;
+                    case "September":
+                        selectedMonth = "09";
+                        break;
+                    case "October":
+                        selectedMonth = "10";
+                        break;
+                    case "November":
+                        selectedMonth = "11";
+                        break;
+                    case "December":
+                        selectedMonth = "12";
+                        break;
+                }
+                FirebaseOperation.retrieveMonth(pb, notes, noteAdapter, tvEmpty, selectedMonth);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         return rootView;
     }
 
@@ -160,7 +228,7 @@ public class MonthLogFragment extends Fragment implements ScreenShotable, Fireba
 
                         DialogPlus removeDialog = DialogPlus.newDialog(getActivity())
                                 .setHeader(R.layout.remove_note_header)
-                                .setExpanded(true, 350)
+                                .setExpanded(true, 280)
                                 .setContentHolder(new ViewHolder(R.layout.remove_note_dialog))
                                 .setOnClickListener(new OnClickListener() {
                                     @Override

@@ -3,7 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="toolbar_color">#014FB3</color>
+    <color name="toolbar_color">#4281e8</color>
+    <color name="semi_toolbar_color">#95BDFF</color>
     <color name="hamburger_color">#ffffff</color>
     <color name="background">#ffffff</color>
     <color name="sign_in_text">#ffffff</color>

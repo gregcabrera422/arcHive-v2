@@ -99,7 +99,7 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="editNote"
-            android:text="Edit" />
+            android:text="OK" />
 
         <Button
             android:id="@+id/btnCancel"

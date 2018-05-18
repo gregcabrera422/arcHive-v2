@@ -38,9 +38,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:text="CALENDAR"
+                android:text="Calendar"
                 android:textColor="#FFF"
-                android:background="@color/toolbar_color"
+                android:background="@color/semi_toolbar_color"
                 android:textSize="30dp"/>
             <TextView
                 android:id="@+id/lblMonth"
@@ -58,7 +58,7 @@
                 android:layout_marginBottom="9dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                app:compactCalendarBackgroundColor="#014FB3"
+                app:compactCalendarBackgroundColor="@color/toolbar_color"
                 app:compactCalendarCurrentDayBackgroundColor="#383838"
                 app:compactCalendarCurrentSelectedDayBackgroundColor="#99bab3"
                 app:compactCalendarMultiEventIndicatorColor="#fff"

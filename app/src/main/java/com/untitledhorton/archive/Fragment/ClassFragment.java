@@ -308,24 +308,6 @@ public class ClassFragment extends Fragment implements ScreenShotable,EasyPermis
         }
     }
 
-//        @Override
-//        protected void onPreExecute() {
-//            progressBar.setVisibility(View.VISIBLE);
-//        }
-//
-//        @Override
-//        protected void onPostExecute(List<String> output) {
-//            progressBar.setVisibility(View.INVISIBLE);
-//            if (output == null || output.size() == 0) {
-//
-//            } else {
-//                adapter = new ClassRecyclerAdapter(classCourses, getActivity());
-//                recyclerView.setAdapter(adapter);
-//            }
-//        }
-//
-//    }
-
     @Override
     public void takeScreenShot() {
         Thread thread = new Thread() {

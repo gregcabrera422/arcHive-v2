@@ -72,7 +72,7 @@ public class ClassRecyclerAdapter extends RecyclerView.Adapter<ClassRecyclerAdap
             final String photoURL = classCourse.getPhotoUrl();
             final String courseTeacher = classCourse.getTeacherName();
             DialogPlus removeDialog = DialogPlus.newDialog(context)
-                    .setExpanded(true, 200)
+                    .setExpanded(true, 150)
                     .setContentHolder(new ViewHolder(R.layout.course_dialog))
                     .setOnClickListener(new OnClickListener() {
                         @Override

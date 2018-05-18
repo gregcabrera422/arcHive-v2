@@ -167,7 +167,7 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
 
                         DialogPlus removeDialog = DialogPlus.newDialog(getActivity())
                                 .setHeader(R.layout.remove_note_header)
-                                .setExpanded(true, 350)
+                                .setExpanded(true, 280)
                                 .setContentHolder(new ViewHolder(R.layout.remove_note_dialog))
                                 .setOnClickListener(new OnClickListener() {
                                     @Override
