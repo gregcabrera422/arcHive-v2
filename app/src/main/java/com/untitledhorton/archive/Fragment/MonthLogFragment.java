@@ -32,6 +32,7 @@ import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.untitledhorton.archive.EditActivity;
 import com.untitledhorton.archive.Model.Note;
+import com.untitledhorton.archive.NoteDetailActivity;
 import com.untitledhorton.archive.R;
 import com.untitledhorton.archive.Utility.CustomNoteAdapter;
 import com.untitledhorton.archive.Utility.FirebaseCommand;
@@ -142,6 +143,23 @@ public class MonthLogFragment extends Fragment implements ScreenShotable, Fireba
 
             }
         });
+
+        lvNotes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                Note item = notes.get(position);
+
+                Intent intent = new Intent(getActivity(), NoteDetailActivity.class);
+                intent.putExtra("title", item.getTitle());
+                intent.putExtra("note", item.getNote());
+                intent.putExtra("priority", item.getPriority());
+                getActivity().startActivity(intent);
+
+            }
+        });
+
         return rootView;
     }
 

@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
     private ViewAnimator viewAnimator;
     private LinearLayout linearLayout;
     private NotesFragment notesFrag;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
             case R.id.menu_item_add:
                 DialogPlus removeDialog = DialogPlus.newDialog(this)
                         .setHeader(R.layout.confirmation_header)
-                        .setExpanded(true, 350)
+                        .setExpanded(true, 450)
                         .setContentHolder(new ViewHolder(R.layout.confirmation_dialog))
                         .setOnClickListener(new OnClickListener() {
                             @Override
@@ -159,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements ViewAnimator.View
                                 switch(view.getId()){
                                     case R.id.btnYes:
                                         FirebaseAuth.getInstance().signOut();
+
                                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                         startActivity(intent);
                                         dialog.dismiss();

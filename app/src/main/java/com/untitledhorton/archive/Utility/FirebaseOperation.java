@@ -128,13 +128,13 @@ public class FirebaseOperation implements FirebaseCommand {
 
                         switch(note.getPriority()){
                             case "High":
-                                compactCalendar.addEvent(new Event(Color.RED, date.getTime(), note.getNote()));
+                                compactCalendar.addEvent(new Event(Color.RED, date.getTime(), "Note(High Priority): " + note.getNote()));
                                 break;
                             case "Medium":
-                                compactCalendar.addEvent(new Event(Color.rgb(255,165,0), date.getTime(), note.getNote()));
+                                compactCalendar.addEvent(new Event(Color.rgb(255,165,0), date.getTime(), "Note(Medium Priority): " +note.getNote()));
                                 break;
                             case "Low":
-                                compactCalendar.addEvent(new Event(Color.YELLOW, date.getTime(), note.getNote()));
+                                compactCalendar.addEvent(new Event(Color.YELLOW, date.getTime(), "Note(Low Priority): " +note.getNote()));
                                 break;
                         }
 

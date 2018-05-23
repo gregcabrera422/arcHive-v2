@@ -9,10 +9,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -29,6 +31,7 @@ import com.orhanobut.dialogplus.ViewHolder;
 import com.untitledhorton.archive.AddActivity;
 import com.untitledhorton.archive.EditActivity;
 import com.untitledhorton.archive.Model.Note;
+import com.untitledhorton.archive.NoteDetailActivity;
 import com.untitledhorton.archive.R;
 import com.untitledhorton.archive.Utility.CustomNoteAdapter;
 import com.untitledhorton.archive.Utility.FirebaseCommand;
@@ -80,6 +83,22 @@ public class NotesFragment extends Fragment implements ScreenShotable, FirebaseC
 
         fab.setOnClickListener(this);
         swipeMenuCreator(lvNotes);
+
+        lvNotes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+
+                Note item = notes.get(position);
+
+                Intent intent = new Intent(getActivity(), NoteDetailActivity.class);
+                intent.putExtra("title", item.getTitle());
+                intent.putExtra("note", item.getNote());
+                intent.putExtra("priority", item.getPriority());
+                getActivity().startActivity(intent);
+
+            }
+        });
 
         return rootView;
     }
